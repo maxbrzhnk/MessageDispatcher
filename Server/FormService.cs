@@ -16,7 +16,8 @@ namespace MessageDispatcher
     public partial class FormService : Form
     {
         public static List<IContractClient> callbacks;
-    
+
+        public static List<string> names;
 
         private ServiceHost host;
         public FormService()
@@ -25,14 +26,13 @@ namespace MessageDispatcher
 
             callbacks = new List<IContractClient>();
 
-            // Create host for service.
+            names = new List<string>();
+
             host = new ServiceHost(typeof(Service));
 
-            // Add end point.
             host.AddServiceEndpoint(typeof(IContractService), new NetTcpBinding(),
-                "net.tcp://localhost:9000/MyService");
+                "net.tcp://localhost:50789/MyService");
 
-            // Запуск хоста.
             host.Open();
         }
 
@@ -48,6 +48,17 @@ namespace MessageDispatcher
             //Parallel
             Parallel.ForEach<IContractClient>(callbacks, (callback) => callback.ClientMethod(textBoxContent.Text));
             Thread.Sleep(100);
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            foreach (string name in names)
+            {
+                if (!checkedListBoxClients.Items.Contains(name))
+                    checkedListBoxClients.Items.Add(name);
+            }
+
+            checkedListBoxClients.Update();
         }
     }
 }

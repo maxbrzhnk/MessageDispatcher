@@ -30,6 +30,7 @@
         {
             this.buttonLogin = new System.Windows.Forms.Button();
             this.richTextBoxContent = new System.Windows.Forms.RichTextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonLogin
@@ -44,23 +45,32 @@
             // 
             // richTextBoxContent
             // 
-            this.richTextBoxContent.Location = new System.Drawing.Point(12, 42);
+            this.richTextBoxContent.Location = new System.Drawing.Point(12, 41);
             this.richTextBoxContent.Name = "richTextBoxContent";
             this.richTextBoxContent.ReadOnly = true;
-            this.richTextBoxContent.Size = new System.Drawing.Size(216, 164);
+            this.richTextBoxContent.Size = new System.Drawing.Size(182, 164);
             this.richTextBoxContent.TabIndex = 1;
             this.richTextBoxContent.Text = "";
             // 
-            // Form1
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(94, 14);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxName.TabIndex = 2;
+            // 
+            // FormClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(254, 223);
+            this.ClientSize = new System.Drawing.Size(209, 212);
+            this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.richTextBoxContent);
             this.Controls.Add(this.buttonLogin);
-            this.Name = "Form1";
+            this.Name = "FormClient";
             this.Text = "Client";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -68,6 +78,7 @@
 
         private System.Windows.Forms.Button buttonLogin;
         internal System.Windows.Forms.RichTextBox richTextBoxContent;
+        private System.Windows.Forms.TextBox textBoxName;
     }
 }
 

@@ -30,6 +30,8 @@
         {
             this.textBoxContent = new System.Windows.Forms.TextBox();
             this.buttonSend = new System.Windows.Forms.Button();
+            this.checkedListBoxClients = new System.Windows.Forms.CheckedListBox();
+            this.buttonUpdate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxContent
@@ -49,14 +51,34 @@
             this.buttonSend.UseVisualStyleBackColor = true;
             this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
             // 
-            // Form1
+            // checkedListBoxClients
+            // 
+            this.checkedListBoxClients.FormattingEnabled = true;
+            this.checkedListBoxClients.Location = new System.Drawing.Point(13, 39);
+            this.checkedListBoxClients.Name = "checkedListBoxClients";
+            this.checkedListBoxClients.Size = new System.Drawing.Size(380, 94);
+            this.checkedListBoxClients.TabIndex = 2;
+            // 
+            // buttonUpdate
+            // 
+            this.buttonUpdate.Location = new System.Drawing.Point(399, 68);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpdate.TabIndex = 3;
+            this.buttonUpdate.Text = "Update";
+            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
+            // 
+            // FormService
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(493, 49);
+            this.ClientSize = new System.Drawing.Size(493, 169);
+            this.Controls.Add(this.buttonUpdate);
+            this.Controls.Add(this.checkedListBoxClients);
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.textBoxContent);
-            this.Name = "Form1";
+            this.Name = "FormService";
             this.Text = "Server";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -67,6 +89,8 @@
 
         private System.Windows.Forms.TextBox textBoxContent;
         private System.Windows.Forms.Button buttonSend;
+        private System.Windows.Forms.CheckedListBox checkedListBoxClients;
+        private System.Windows.Forms.Button buttonUpdate;
     }
 }
 

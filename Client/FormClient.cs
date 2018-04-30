@@ -24,13 +24,20 @@ namespace Client
             InstanceContext context = new InstanceContext(new Context(this));
 
             DuplexChannelFactory<IContractService> factory = new DuplexChannelFactory<IContractService>
-                (context, new NetTcpBinding(), "net.tcp://localhost:9000/MyService");
+                (context, new NetTcpBinding(), "net.tcp://localhost:50789/MyService");
 
             IContractService server = factory.CreateChannel();
 
-            server.ServiceMethod();
+            if(textBoxName.Text == string.Empty)
+            {
+                richTextBoxContent.Text = "Please input your name";
 
-            richTextBoxContent.Text = "connected";
+                return;
+            }
+
+            server.ServiceMethod(textBoxName.Text);
+
+            richTextBoxContent.Text = "Connected";
         }
     }
 }

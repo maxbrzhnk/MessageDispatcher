@@ -11,9 +11,13 @@ namespace MessageDispatcher
 {
     class Service : IContractService
     {
-        public void ServiceMethod()
+        public void ServiceMethod(string name)
         {
-            FormService.callbacks.Add(OperationContext.Current.GetCallbackChannel<IContractClient>());
+             //TODO Exit situation
+             FormService.names.Add(name);
+             //TODO Change behaviour for specific client
+             FormService.callbacks.Add(OperationContext.Current.GetCallbackChannel<IContractClient>());
+
         }
     }
 }

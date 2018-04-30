@@ -7,6 +7,6 @@ namespace ContractLibrary
     public interface IContractService
     {
         [OperationContract(IsOneWay = true)]
-        void ServiceMethod();
+        void ServiceMethod(string name);
     }
 }
