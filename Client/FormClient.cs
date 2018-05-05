@@ -35,7 +35,15 @@ namespace Client
                 return;
             }
 
-            server.ServiceMethod(textBoxName.Text);
+            if(!server.ServiceMethod(textBoxName.Text))
+            {
+                richTextBoxContent.Text = "Please change your name";
+
+                return;
+            }
+
+            this.buttonLogin.Enabled = false;
+            this.textBoxName.ReadOnly = true;
 
             richTextBoxContent.Text = "Connected";
         }
