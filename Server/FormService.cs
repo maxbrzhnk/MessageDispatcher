@@ -46,8 +46,29 @@ namespace MessageDispatcher
             //}
 
             //Parallel
-            Parallel.ForEach<IContractClient>(callbacks, (callback) => callback.ClientMethod(textBoxContent.Text));
-            Thread.Sleep(100);
+            if (!(checkedListBoxClients.CheckedItems.Count == 0))
+            {
+                List<IContractClient> checkedCallbacks = new List<IContractClient>();
+
+                foreach (IContractClient callback in callbacks)
+                    checkedCallbacks.Add(callback);
+
+                int namesCount = names.Count;
+
+                int callbacksIterator = 0, namesIterator = 0;
+                for (; namesIterator < namesCount; callbacksIterator++, namesIterator++)
+                {
+                    if (!checkedListBoxClients.CheckedItems.Contains(names[namesIterator]))
+                    {
+                        checkedCallbacks.RemoveAt(callbacksIterator);
+       
+                        callbacksIterator--;
+                    }
+                }
+
+                Parallel.ForEach<IContractClient>(checkedCallbacks, (callback) => callback.ClientMethod(textBoxContent.Text));
+                Thread.Sleep(100);
+            }
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
