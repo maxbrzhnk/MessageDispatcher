@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using System.ServiceModel;
 using ContractLibrary;
@@ -38,15 +39,7 @@ namespace MessageDispatcher
 
         private void buttonSend_Click(object sender, EventArgs e)
         {
-            //Single process
-            //foreach (IContractClient callback in callbacks)
-            //{
-            //    callback.ClientMethod(textBoxContent.Text);
-            //    Thread.Sleep(100);
-            //}
-
-            //Parallel
-            if (!(checkedListBoxClients.CheckedItems.Count == 0))
+            if (!(ListBoxClients.CheckedItems.Count == 0))
             {
                 List<IContractClient> checkedCallbacks = new List<IContractClient>();
 
@@ -58,7 +51,7 @@ namespace MessageDispatcher
                 int callbacksIterator = 0, namesIterator = 0;
                 for (; namesIterator < namesCount; callbacksIterator++, namesIterator++)
                 {
-                    if (!checkedListBoxClients.CheckedItems.Contains(names[namesIterator]))
+                    if (!ListBoxClients.CheckedItems.Contains(names[namesIterator]))
                     {
                         checkedCallbacks.RemoveAt(callbacksIterator);
        
@@ -67,19 +60,45 @@ namespace MessageDispatcher
                 }
 
                 Parallel.ForEach<IContractClient>(checkedCallbacks, (callback) => callback.ClientMethod(textBoxContent.Text));
-                Thread.Sleep(100);
             }
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            foreach (string name in names)
+            if(!File.Exists(@"AccessName.txt"))
             {
-                if (!checkedListBoxClients.Items.Contains(name))
-                    checkedListBoxClients.Items.Add(name);
+                File.CreateText(@"AccessName.txt");
             }
 
-            checkedListBoxClients.Update();
+            string[] accessName = File.ReadAllLines(@"AccessName.txt");
+
+            foreach (string name in names)
+            {
+                if (!ListBoxClients.Items.Contains(name))
+                {
+                    ListBoxClients.Items.Add(name);
+                }
+
+                if (accessName.Contains(ListBoxClients.Items[ListBoxClients.Items.Count - 1]))
+                    ListBoxClients.SetItemChecked(ListBoxClients.Items.Count - 1, true);
+            }                        
+
+            ListBoxClients.Update();
+        }
+
+        private void buttonNewSet_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists(@"AccessName.txt"))
+            {
+                File.CreateText(@"AccessName.txt");
+            }
+
+            StreamWriter file = new StreamWriter(@"AccessName.txt", false);
+
+            foreach (string client in ListBoxClients.CheckedItems)
+                file.WriteLine(client);
+
+            file.Close();
         }
     }
 }
