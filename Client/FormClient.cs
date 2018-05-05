@@ -14,19 +14,28 @@ namespace Client
 {
     public partial class FormClient : Form
     {
+        InstanceContext context;
+        DuplexChannelFactory<IContractService> factory;
+        IContractService server;
+
         public FormClient()
         {
             InitializeComponent();
         }
 
-        private void buttonLogin_Click(object sender, EventArgs e)
+        private void CreateChanel()
         {
-            InstanceContext context = new InstanceContext(new Context(this));
+            context = new InstanceContext(new Context(this));
 
-            DuplexChannelFactory<IContractService> factory = new DuplexChannelFactory<IContractService>
+            factory = new DuplexChannelFactory<IContractService>
                 (context, new NetTcpBinding(), "net.tcp://localhost:50789/MyService");
 
-            IContractService server = factory.CreateChannel();
+            server = factory.CreateChannel();
+        }
+
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
+            CreateChanel();
 
             if(textBoxName.Text == string.Empty)
             {
@@ -46,6 +55,12 @@ namespace Client
             this.textBoxName.ReadOnly = true;
 
             richTextBoxContent.Text = "Connected";
+        }
+
+        private void FormClient_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!(textBoxName.Text == string.Empty))
+                server.ExitClient(textBoxName.Text);
         }
     }
 }

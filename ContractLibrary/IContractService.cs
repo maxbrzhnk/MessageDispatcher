@@ -8,5 +8,8 @@ namespace ContractLibrary
     {
         [OperationContract(IsOneWay = false)]
         bool ServiceMethod(string name);
+
+        [OperationContract(IsOneWay = true)]
+        void ExitClient(string name);
     }
 }

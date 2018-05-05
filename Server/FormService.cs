@@ -65,12 +65,9 @@ namespace MessageDispatcher
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            if(!File.Exists(@"AccessName.txt"))
-            {
-                File.CreateText(@"AccessName.txt");
-            }
-
             string[] accessName = File.ReadAllLines(@"AccessName.txt");
+
+            ListBoxClients.Items.Clear();
 
             foreach (string name in names)
             {

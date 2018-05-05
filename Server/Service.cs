@@ -15,12 +15,19 @@ namespace MessageDispatcher
         {
             if (FormService.names.Contains(name))
                 return false;
-             //TODO Exit situation
+
              FormService.names.Add(name);
-             //TODO Change behaviour for specific client
+
              FormService.callbacks.Add(OperationContext.Current.GetCallbackChannel<IContractClient>());
 
             return true;
+        }
+
+        public void ExitClient(string name)
+        {
+            FormService.names.Remove(name);
+
+            FormService.callbacks.Remove(OperationContext.Current.GetCallbackChannel<IContractClient>());            
         }
     }
 }

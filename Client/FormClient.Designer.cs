@@ -67,8 +67,10 @@
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.richTextBoxContent);
             this.Controls.Add(this.buttonLogin);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormClient";
             this.Text = "Client";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormClient_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

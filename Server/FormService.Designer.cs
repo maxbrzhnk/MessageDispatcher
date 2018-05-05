@@ -52,17 +52,17 @@
             this.buttonSend.UseVisualStyleBackColor = true;
             this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
             // 
-            // checkedListBoxClients
+            // ListBoxClients
             // 
             this.ListBoxClients.FormattingEnabled = true;
             this.ListBoxClients.Location = new System.Drawing.Point(13, 39);
-            this.ListBoxClients.Name = "checkedListBoxClients";
-            this.ListBoxClients.Size = new System.Drawing.Size(380, 94);
+            this.ListBoxClients.Name = "ListBoxClients";
+            this.ListBoxClients.Size = new System.Drawing.Size(380, 124);
             this.ListBoxClients.TabIndex = 2;
             // 
             // buttonUpdate
             // 
-            this.buttonUpdate.Location = new System.Drawing.Point(399, 56);
+            this.buttonUpdate.Location = new System.Drawing.Point(399, 61);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
             this.buttonUpdate.TabIndex = 3;
@@ -72,7 +72,7 @@
             // 
             // buttonNewSet
             // 
-            this.buttonNewSet.Location = new System.Drawing.Point(399, 85);
+            this.buttonNewSet.Location = new System.Drawing.Point(399, 102);
             this.buttonNewSet.Name = "buttonNewSet";
             this.buttonNewSet.Size = new System.Drawing.Size(75, 23);
             this.buttonNewSet.TabIndex = 4;
@@ -90,6 +90,7 @@
             this.Controls.Add(this.ListBoxClients);
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.textBoxContent);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormService";
             this.Text = "Server";
             this.ResumeLayout(false);
